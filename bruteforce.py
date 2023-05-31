@@ -2,22 +2,13 @@ import csv
 import itertools
 
 
+
 filePath = "dataCsv/dataTest.csv"
 max_budget = 500
 NULL_NUMBER = 0.0
 
 
-with open(filePath, newline="") as file:
-    reader = csv.reader(file, delimiter=',')
-    rows = []
-    for row in reader:
-        if row[0] == "name" or int(row[0]) <= NULL_NUMBER or int(row[1]) <= NULL_NUMBER:
-            pass
-        else:
-            row[1] = float(row[0]) * float(row[1]) / 100
-            rows.append(row)
-
-
+# sort function
 def sort_data(data, max_budget):
     best_combination = []
     best_profit = []
@@ -37,11 +28,31 @@ def sort_data(data, max_budget):
                     best_profit = total_profit
     
     best_combination = best_combination[len(best_combination)-1]
+    # Print list of best combination investment
     for combination in best_combination:
         print(combination)
         total += float(combination[0])
         best += float(combination[1])
-    print(total)
-    print(best)
- 
-sort_data(rows,max_budget)
+    print("---------------------------")
+    print(" La somme des coùt est de ", total, " euros ")
+    print(" Le benifice tiré est de ", best, " euros")
+
+
+# Loading data from csv file
+def chargingData():
+    with open(filePath, newline="") as file:
+        reader = csv.reader(file, delimiter=',')
+        rows = []
+        for row in reader:
+            if row[0] == "name" or int(row[0]) <= NULL_NUMBER or int(row[1]) <= NULL_NUMBER:
+                pass
+            else:
+                row[1] = float(row[0]) * float(row[1]) / 100
+                rows.append(row)
+    return rows
+
+
+# Starting programme function
+def startProgrammeBrute():
+    rows = chargingData()
+    sort_data(rows, max_budget)
