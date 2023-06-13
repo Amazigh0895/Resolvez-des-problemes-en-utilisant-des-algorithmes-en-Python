@@ -53,6 +53,6 @@ def chargingData():
 
 
 # Starting programme function
-def startProgrammeBrute():
+def startProgrammBrute():
     rows = chargingData()
     sort_data(rows, max_budget)

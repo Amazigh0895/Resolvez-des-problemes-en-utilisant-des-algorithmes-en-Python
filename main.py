@@ -1,4 +1,5 @@
-from bruteforce import startProgrammeBrute
+from bruteforce import startProgrammBrute
+from optimized import startProgrammOptimized
 import time
 
 
@@ -6,10 +7,13 @@ def main():
     """ Fonction get starting"""
 
     starTime = time.time()
-    startProgrammeBrute()
+    
+    #startProgrammBrute()
+    startProgrammOptimized()
+
     endTime = time.time()
-    elapsed = (endTime - starTime)
-    print(f"Temps d'exécution : {elapsed:.3} s")
+    theTime = (endTime - starTime)
+    print(f"Temps d'exécution : {theTime:.3} s")
 
 
 if __name__ == "__main__":

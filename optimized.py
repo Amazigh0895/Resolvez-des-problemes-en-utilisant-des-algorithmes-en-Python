@@ -15,7 +15,9 @@ def chargingData():
             if row[0] == "name" or float(row[1]) <= NULL_NUMBER or float(row[2]) <= NULL_NUMBER:
                 pass
             else:
+                # Get benifice
                 benifice = float(row[1]) * float(row[2]) / 100
+                # Get rendment 
                 rendement = math.floor(max_budget/float(row[1])) * float(row[1]) * (1+ float(row[2]) / 100)  - math.floor(max_budget/float(row[1])) * float(row[1])
                 row.append(benifice)
                 row.append(rendement)
@@ -23,11 +25,7 @@ def chargingData():
     return rows
 
 
-rows = chargingData()
-rows = sorted(rows, key=lambda rows: float(rows[4]), reverse=True)
-
-
-# sort function
+# Sort function
 def sort_data(data, max_budget):
     n = len(data)
     total_profit, total_cost, i, bestListProfit = 0.0, 0.0, 0, []
@@ -52,4 +50,12 @@ def sort_data(data, max_budget):
         print(profit)
 
 
-sort_data(rows, max_budget)
+# Start function
+def startProgrammOptimized():
+    """starting programm"""
+
+    rows = chargingData()
+    # Sort data by rendmment
+    rows = sorted(rows, key=lambda rows: float(rows[4]), reverse=True)
+
+    sort_data(rows, max_budget)
